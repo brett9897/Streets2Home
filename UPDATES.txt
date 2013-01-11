@@ -1,0 +1,41 @@
+2013-01-10_1509
+---UPDATES---
+	survey_offline_generator.php
+		changed button for sync from button to input type="button"...keeps the page from submitting (which is a problem with offline app)
+
+2013-01-10_1617
+
+---MERGED----
+	Bretts update on survey.php...has to do with preventing the "previous questions" button from showing up when viewing first question group being used
+	-Included a nav_bar.html file...not sure what it's for, but i left it in.
+	---Brett uploaded some files that were not completely up to date.---
+	---I fixed the merge -JN-
+	----FILES INVOLVED---
+		adjust_vi.php
+		edit_tips.php
+		header.php   ---was outdated---
+		modifyy_survey.php   ---outdated---
+		nav_bar.html   -new file-
+		survey_disp_func.php
+		survey.php	--BRETS CHANGES--
+
+
+
+2013-01-09_0546
+
+----CREATED----
+	- survey_offline_generator.php  
+		-- functions to generate the static offline survey webpage survey_offline_static.html; 
+		-- modifies the manifest file to allow previous visitors to update their pages automatically.
+		-- CAUSES offline survey page to reload on and show new offline cached page when it is downloaded and cached.
+		-- improved delete saved surveys function...only deletes localStorage data stored from this page.
+
+----MODIFIED----
+	- secured pages   ... shows welcome text.
+	- modify_survey.php	-- provides simple interface to generate the offline survey (both admin version and normal version)
+
+---------------
+
+
+
+

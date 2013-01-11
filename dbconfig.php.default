@@ -1,0 +1,13 @@
+<?php
+
+/**
+* This is a configuration file for Database connection.
+* Copy this to dbconfig.php and then modify to match your setup
+*/
+
+define("HOST", "localhost");
+define("DB_NAME", "s2h");
+define("USERNAME", "s2h");
+define("PASSWORD", "1234");
+
+?>

@@ -1,0 +1,140 @@
+<?php
+require_once 'dbconfig.php';
+	//// Inialize session
+	//session_start();
+	//
+	//// Check, if username session is NOT set then this page will jump to login page
+	//if (!isset($_SESSION['username'])) {
+	//header('Location: index.php');
+	//}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+	<head>
+	  <title>Homeless Shelter Occupancy</title>
+	  <link href="style.css" rel="stylesheet" type="text/css" />
+	  <link href="screen.css" rel="stylesheet" type="text/css" />
+	  
+		<link href="demo_page.css" rel="stylesheet" type="text/css" />
+		<link href="demo_table.css" rel="stylesheet" type="text/css" />
+ 
+		<link href="shCore.css" rel="stylesheet" type="text/css" />
+
+
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		
+		<script type="text/javascript" language="javascript" src="jquery.js"></script>
+		<script type="text/javascript" language="javascript" src="jquery.dataTables.js"></script>
+		<script type="text/javascript" language="javascript" src="shCore.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				$('#example').dataTable( {
+					"bProcessing": true,
+					"bServerSide": true,
+					"sAjaxSource": "report_server_processing.php"
+				} );
+			} );
+		</script>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    		<script type="text/javascript">
+     		 google.load('visualization', '1', {packages: ['corechart']});
+   		 </script>
+   		 <script type="text/javascript">
+    		  function drawVisualization() {
+      		  // Create and populate the data table.
+      		  var data = google.visualization.arrayToDataTable([
+         	 ['Vulnerability Index', 'Number of Clients'],
+       		   <?php
+                    include ('dbconfig.php');
+                               //-------------------Connect To Database-------------------
+                    $link   =   mysql_connect(HOST,USERNAME,PASSWORD) or die ('Could not connect :'.  mysql_error());
+                    mysql_select_db(DB_NAME) or die( "Unable to select database");
+                    $sql = "SELECT vi, count(vi) AS count
+                            FROM client
+                            GROUP BY vi";
+                    $rt = mysql_query($sql) or die('Error msg: '.mysql_error().'<br/>
+                                sql: '.$sql.'<br/');
+                    $number = mysql_num_rows($sql);
+                    $i = 1;
+                    while($r=mysql_fetch_array($rt, MYSQLI_ASSOC))
+                    {
+                        if($i != $number){
+                            echo '[ '.$r['vi'].', '.$r['count'].'],';
+                        }
+                        else{
+                            echo '[ '.$r['vi'].', '.$r['count'].']';
+                        }
+                        $i++;
+                    }
+                    mysql_close($link);
+                ?>
+        	]);
+      
+        		// Create and draw the visualization.
+        		new google.visualization.ColumnChart(document.getElementById('visualization')).
+            		draw(data,
+                		 {title:"Number of Clients by Vulnerability Index",
+                 	 width:800, height:400,
+                  	hAxis: {title: "Vulnerability Index"}}
+          	  );
+      		}
+      
+
+      		google.setOnLoadCallback(drawVisualization);
+    		</script>
+	</head>
+	
+	<body onload="javascript:setOffsets()">
+		
+<?php
+include('header.php');
+?>
+	
+	
+		<div id="dt_example">
+			<div id="container">
+				
+				<div id="dynamic">
+					<p><h3>Sort by clicking on column name in which you want to sort by.</h3></p>
+					<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+						<thead>
+							<tr>
+								<th width="20%">First Name</th>
+								<th width="25%">Last Name</th>
+								<th width="25%">Date of Birth</th>
+								<th width="15%">VI</th>
+								<th width="15%">Details Link</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="5" class="dataTables_empty">Loading data from server</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Date of Birth</th>
+								<th>VI</th>
+								<th>Details Link</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+				<div class="spacer"></div>
+                <div id="visualization" style="width: 600px; height: 400px;"></div>  
+		
+                <div id="dt_example">
+                    <div id="container">
+                        
+                        <div id="dynamic">
+                            
+                    </div>
+                </div>
+			</div>
+		</div>
+	</body>
+</html>

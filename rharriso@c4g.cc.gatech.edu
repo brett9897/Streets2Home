@@ -1,0 +1,71 @@
+<?php
+session_start();
+include ('dbconfig.php');
+include('SimpleImage.php');
+
+mysql_connect(HOST, USERNAME, PASSWORD);
+$conn = mysql_select_db(DB_NAME);
+
+$target_path = "uploads/";
+
+$target_path = $target_path . renameImage();
+
+$_SESSION['client_photo'] = $target_path;
+
+$query = "UPDATE client ";
+$query .= "SET personal_photo = ('$target_path') ";
+$query .= "WHERE client_id = ".$_SESSION['clientID'];
+$results = mysql_query($query) or die('Error msg: '.mysql_error().'<br/>
+            sql: '.query.'<br/>');
+
+if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+    $msg = "The file ".  $_SESSION['client_photo']. 
+    " has been uploaded";
+    //chmod($target_path, "0666");
+    $work = new ImgResizer($target_path); 
+    $work -> resize(600, $target_path); 
+} else{
+    $msg = "There was an error uploading the file, please try again!";
+    $msg .= $_FILES['uploadedfile']['error'];
+}
+header("Location: upload_photo.php?msg=$msg");
+
+function renameImage(){ 
+    mysql_connect(HOST, USERNAME, PASSWORD);
+    $conn = mysql_select_db(DB_NAME);
+    
+    $sql = "SELECT first_name, last_name, client_id
+            FROM client
+            WHERE client_id = ".$_SESSION['clientID'];
+    $res = mysql_query($sql) or die('Error msg: '.mysql_error().'<br/>
+                    sql: '.$sql.'<br/>');
+    if($row = mysql_fetch_array($res, MYSQLI_ASSOC)){
+        $_SESSION['successphoto'] = 1;
+        return $row{first_name}.'_'.$row{last_name}.'_'.$row{client_id};
+    }
+    else{
+        echo "There was an error while fetching the row.<br/>";
+    }
+}
+
+class ImgResizer {
+    private $originalFile = '';
+    public function __construct($originalFile = '') {
+        $this -> originalFile = $originalFile;
+    }
+    public function resize($newWidth, $targetFile) {
+        if (empty($newWidth) || empty($targetFile)) {
+            return false;
+        }
+        $src = imagecreatefromjpeg($this -> originalFile);
+        list($width, $height) = getimagesize($this -> originalFile);
+        $newHeight = ($height / $width) * $newWidth;
+        $tmp = imagecreatetruecolor($newWidth, $newHeight);
+        imagecopyresampled($tmp, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+        if (file_exists($targetFile)) {
+            unlink($targetFile);
+        }
+        imagejpeg($tmp, $targetFile, 85); // 85 is my choice, make it between 0 – 100 for output image quality with 100 being the most luxurious
+    }
+}
+?>

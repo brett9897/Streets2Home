@@ -1,0 +1,54 @@
+table td, table th {
+  padding: 0.1em 1em;
+  font-size: 1em;
+  font: 12px 'Lucida Grande', Verdana, Arial, Sans-Serif; /* Resets 1em to 10px */
+}
+
+table th {
+  border-bottom: 2px solid black;
+}
+
+#primary h1 {
+  font-size: 2.2em;
+  color: black;
+  padding: 0;
+  margin-bottom: 1em;
+}
+
+form.inline {
+  display: inline;
+  float: left;
+  margin-right: 3px;
+}
+
+#header h1 a:hover {
+  text-decoration: none;
+}
+
+a.delete {
+  color: red;
+}
+
+span.logged_in_user {
+  float: right;
+  margin: 5px 10px;
+  color: white;
+}
+
+span.logged_in_user a {
+  color: white;
+  text-decoration: underline;
+}
+
+fieldset p {
+  padding: 2px;
+}
+
+fieldset {
+  padding: 10px;
+  margin: 5px;
+}
+
+form#new_person table td {
+  padding: 5px 10px;
+}

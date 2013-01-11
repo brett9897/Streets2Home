@@ -1,0 +1,40 @@
+Modify/Create Survey
+
+Tasks Breakdown with Time Estimates:
+
+Note:  Time estimates include proper implementation and testing.
+
+1. Implement multi-valued attributes
+	a. display as check box
+	b. create new table for each multi-valued attribute
+
+	Time estimate: 2 hours
+
+2.  Implement Survey/Project Type
+	a.  Homeless, Veterans, etc
+
+	Time estimate: 1 hour
+
+2.  Modify Survey
+	a.  Modify Question Grouping(add new group, edit existing, delete group)
+	b.  Edit question text
+	c.  Edit response options
+	d.  Update existing clients responses to match new response order numbers
+	e.  Edit/Add VI weight for a question
+	f.  Store new attributes in EAV table.
+	g.  Update VI configuration
+
+	Time estimate: 12 hours
+
+3.  Create Survey
+	a.  Give survey a name
+	b.  Create Question Groupings
+	c.  Project Type
+	d.  Add/Delete/Modify questions for each group
+	e.  Same functionality as modify survey task(VI score updates, etc.)
+	f.  Map question id's to client columns where client column exists.
+		Otherwise, create new entry in the EAV table.
+
+	Time estimate:  20 hours
+
+	

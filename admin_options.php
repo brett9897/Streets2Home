@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+        <head>
+          <title>Homeless Shelter Occupancy</title>
+          <link href="style.css" rel="stylesheet" type="text/css" />
+          <link href="screen.css" rel="stylesheet" type="text/css" />
+          <link href="facebox.css" rel="stylesheet" type="text/css" />
+          <script src="/javascripts/jquery.js" type="text/javascript"></script>
+          <!--<script>jQuery.noConflict();</script>-->
+          <script src="/javascripts/prototype.js" type="text/javascript"></script>
+          <script src="/javascripts/effects.js" type="text/javascript"></script>
+          <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+          <script src="/javascripts/controls.js" type="text/javascript"></script>
+          <script src="/javascripts/application.js" type="text/javascript"></script>
+          <script src="/javascripts/feedback.js" type="text/javascript"></script>
+          <script src="/javascripts/facebox.js" type="text/javascript"></script>
+        </head>
+        <body onload="javascript:setOffsets()">
+<?php
+include('header.php');
+include('dbconfig.php');
+
+//only allow administrators to this page
+if($_SESSION['user_type_num'] != 2){
+    header('Location: index.php');
+}
+
+// Check, if username session is NOT set then this page will jump to login page
+if (!isset($_SESSION['username'])) {
+    header('Location: index.php');
+}
+
+	//-------------------Connect To Database-------------------
+	$link   =   mysql_connect(HOST,USERNAME,PASSWORD) or die ('Could not connect :'.  mysql_error());
+	mysql_select_db(DB_NAME) or die( "Unable to select database");
+
+    //-------------------Get the tip and show it in the this page from database-------------------
+	$sql1 = 'SELECT tips FROM tips_table WHERE page_name="admin_options.php"';
+	$result1 = mysql_query($sql1) or die ( 'Query1 failed: ' . mysql_error() );
+	$row1 = mysql_fetch_array($result1, MYSQLI_ASSOC);
+
+	echo '<div id="Tips" style="width:30%;position:relative;left:3%;top:3%;background:#B4CFEC;border: 1px solid #000000;padding: 10 10 10 10">
+			<B>Tips</B>
+			<br><br>
+			<p>' . $row1{'tips'} .'</p>
+			</div>';
+	echo '<div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>';
+?>
+                   
+					 <h3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrative Options:</h3>
+					 <br><br>
+                	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="adjust_vi.php">Vulnerability Score Adjustment</a></p><br/>
+                	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="modify_survey.php">Modify Survey</a></p><br/>
+                	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Modify Language</a></p><br/>
+                	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="edit_tips.php">Edit Tips</a></p><br/>
+                	
+                	<br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>
+                
+               
+                
+                
+        </body>
+</html>
