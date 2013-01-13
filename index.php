@@ -31,7 +31,7 @@
 <form id="login" method="post" action="loginproc.php"> 
 
     <h1>Log in to <strong>Streets to Home 2.0</strong> </h1>
-    <p class="register">New User? <a href="registration.php">Register here!</a></p><br/><br/>
+    <br/><br/>
     
     <div>
     	<label for="login_username"><b>Username</b></label> <br/>
