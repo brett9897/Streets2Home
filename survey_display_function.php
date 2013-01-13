@@ -55,7 +55,7 @@ function display_date_box($id, $text){
         $auto_val = get_current_date();
     }
 	echo '<td text-align="right">'.$text.'</td>';
-	echo '<td text-align="left"><input type="date"
+	echo '<td text-align="left"><input type="text" class="date_picker"
 	            name="'.$id.'"
 				id = "'.$id.'"
 	            pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
