@@ -13,15 +13,13 @@ Steps to get this running on your local machine
 
 #### 3. Update dbconfig.php to match your connection settings
 
-#### 4. create 'survey_offline_static.html' and 's2h_survey_offline.manifest'
+#### 4. create 'survey_offline_static.html'
 
 > $ touch survey_offline_static.html  
-> $ touch s2h_survey_offline.manifest
 
 #### 5. Make sure they both have other write privileges
 This shouldn't be a problem if you are using Windows
 > $ chmod o+w survey_offline_static.html  
-> $ chmod o+w s2h_survey_offline.manifest
 
 #### 6. Use the sql file in sql_s2h to create your database and populate it with test data
 The amount of data might be too much if you are using PHPMyAdmin, so you might have to do it in mysql command line.

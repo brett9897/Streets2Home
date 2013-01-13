@@ -4,10 +4,11 @@
 			  <title>Homeless Shelter Occupancy</title>
 			  <link href="style.css" rel="stylesheet" type="text/css" />
 			  <link href="screen.css" rel="stylesheet" type="text/css" />
-              <link href="css/overcast/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
               <!--jQuery UI stuff-->
-              <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
+              <link href="css/overcast/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+              <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
               <script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+              <script src="js/button.js" text="text/javascript"></script>
               <script src="js/survey/survey.js" text="text/javascript"></script>
 			</head>
 			

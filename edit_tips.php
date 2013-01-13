@@ -39,16 +39,11 @@ header('Location: index.php');
 		
           
           <link href="screen.css" rel="stylesheet" type="text/css" />
-          <link href="facebox.css" rel="stylesheet" type="text/css" />
-          <script src="/javascripts/jquery.js" type="text/javascript"></script>
-          <!--<script>jQuery.noConflict();</script>-->
-          <script src="/javascripts/prototype.js" type="text/javascript"></script>
-          <script src="/javascripts/effects.js" type="text/javascript"></script>
-          <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
-          <script src="/javascripts/controls.js" type="text/javascript"></script>
-          <script src="/javascripts/application.js" type="text/javascript"></script>
-          <script src="/javascripts/feedback.js" type="text/javascript"></script>
-          <script src="/javascripts/facebox.js" type="text/javascript"></script>
+          <!--jQuery UI stuff-->
+          <link href="css/overcast/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+          <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+          <script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+          <script src="js/button.js" text="text/javascript"></script>
         </head>
         <body onload="javascript:setOffsets()">
 <?php

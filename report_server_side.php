@@ -21,13 +21,16 @@ require_once 'dbconfig.php';
 		<link href="demo_table.css" rel="stylesheet" type="text/css" />
  
 		<link href="shCore.css" rel="stylesheet" type="text/css" />
-
+		<!--jQuery UI stuff-->
+	    <link href="css/overcast/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+	   	<script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+	    <script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+	    <script src="js/button.js" text="text/javascript"></script>
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		
-		<script type="text/javascript" language="javascript" src="jquery.js"></script>
+
 		<script type="text/javascript" language="javascript" src="jquery.dataTables.js"></script>
-		<script type="text/javascript" language="javascript" src="shCore.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
 				$('#example').dataTable( {
@@ -87,7 +90,7 @@ require_once 'dbconfig.php';
     		</script>
 	</head>
 	
-	<body onload="javascript:setOffsets()">
+	<body>
 		
 <?php
 	include('header.php');
