@@ -27,21 +27,12 @@ header('Location: index.php');
       <script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
       <script src="js/button.js" text="text/javascript"></script>
 	</head>
-	<body onload="javascript:setOffsets()">
+	<body>
 		
 <?php
 include('header.php');
 include ('compute_vi.php');
-	echo "<br/>";
-	echo '<form method="post" action="adjust_vi.php">';	
-	echo "<table>";	
-	
-	display_vi_info();
-	echo '<tr><td></td><td align="right"><input type="submit" name="submit" value="Update Weights"></td></tr>';
-	echo "</table>";
-	echo '</form>';	
-	
-	function display_vi_info(){
+	echo '<div id="wrapping" class="vi">';
 	//-------------------Connect To Database-------------------
 	$link   =   mysql_connect(HOST,USERNAME,PASSWORD) or die ('Could not connect :'.  mysql_error());
 	mysql_select_db(DB_NAME) or die( "Unable to select database");
@@ -59,8 +50,24 @@ include ('compute_vi.php');
 	            <br><br>
 	            <p>' . $tips .'</p>
 	          </div>';
-	}
+	}	
+?>
+	<div id="side_nav" class="vi">
+		<a href="adjust_vi.php">Vulnerability Score Adjustment</a><br/><br/>
+    	<a href="modify_survey.php">Modify Survey</a><br/><br/>
+    	<a href="#">Modify Language</a><br/><br/>
+    	<a href="edit_tips.php">Edit Tips</a><br/><br/>
+	</div>
+<?php
+	echo '<div id="content"><form method="post" action="adjust_vi.php">';
+	echo "<table>";	
 	
+	display_vi_info();
+	echo '<tr><td></td><td align="right"><input type="submit" name="submit" value="Update Weights"></td></tr>';
+	echo "</table>";
+	echo '</form></div>';	
+	
+	function display_vi_info(){
 	//ECHO "ABOUT TO ENTER POST<BR/>";
 	if(isset($_POST['submit']))
 	{
@@ -104,8 +111,7 @@ include ('compute_vi.php');
 	$result = mysql_query($sql) or die('Query1 in display_vi_info failed<br/>
 			Error Message: '.mysql_error().'<br/>
 			Failed SQL Statement: '.$sql.'<br/>');
-	echo "<br/><br/>";
-	echo "<th><h3>Description of Vulnerability</h3></th><th><h3></he>Weight</h3></th>";
+	echo "<tr><th><h3>Description of Vulnerability</h3></th><th><h3></he>Weight</h3></th></tr>";
 	while($row = mysql_fetch_array($result, MYSQLI_ASSOC)){
 		echo "<tr>";
 		echo "<td>".$row{description}."</td>";
@@ -119,6 +125,7 @@ include ('compute_vi.php');
 ?>
 
 		</div>
+	</div>
 		<div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>
 		
 

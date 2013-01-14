@@ -10,7 +10,7 @@
               <script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
               <script src="js/button.js" text="text/javascript"></script>
 			</head>
-			<body onload="javascript:setOffsets()">
+			<body>
 <?php
 session_start();
 include('dbconfig.php');
@@ -79,8 +79,16 @@ else if( isset($_SESSION['surveyOfflineSet']) ) {
 	$_SESSION['surveyOfflineSet'] = null;
 }
 
-
-echo '<div id="wrapper">';
+?>
+<div id="wrapping" class="mod_surv">
+    <div id="side_nav" class="mod_surv">
+        <a href="adjust_vi.php">Vulnerability Score Adjustment</a><br/><br/>
+        <a href="modify_survey.php">Modify Survey</a><br/><br/>
+        <a href="#">Modify Language</a><br/><br/>
+        <a href="edit_tips.php">Edit Tips</a><br/><br/>
+    </div>
+<?php
+echo '<div id="wrapper" class="mod_surv">';
 echo '<h3>Filter Groups</h3><br/><br/>';
 echo '<table>';
 echo '<form method="post" action="modify_survey.php">';
@@ -93,7 +101,8 @@ echo '<tr>
 echo '</form>';
 echo '</table>';
 echo '</div>';
-
+echo '</div>';
+echo '<div class="clear"></div>';
 function display_group_selection(){
     $q = "SELECT grouping_name, grouping_id
           FROM grouping_names";

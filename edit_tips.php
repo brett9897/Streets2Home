@@ -45,7 +45,7 @@ header('Location: index.php');
           <script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
           <script src="js/button.js" text="text/javascript"></script>
         </head>
-        <body onload="javascript:setOffsets()">
+        <body>
 <?php
 	include('header.php');
 	include('dbconfig.php');
@@ -83,13 +83,19 @@ header('Location: index.php');
 		}
 		
 		echo '<div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>';
-		
-		echo '<h3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edit Tips:</h3>';
 
 		
-		//echo '<br><br>';
+?>
+		<div id="side_nav" class="edit_tips">
+	        <a href="adjust_vi.php">Vulnerability Score Adjustment</a><br/><br/>
+	        <a href="modify_survey.php">Modify Survey</a><br/><br/>
+	        <a href="#">Modify Language</a><br/><br/>
+	        <a href="edit_tips.php">Edit Tips</a><br/><br/>
+    	</div>
+<?php
 		
 		echo '<div id="dt_example">';
+		echo '<h3 style="font-size: 18px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edit Tips:</h3>';
 			echo '<div id="container">';
 				
 				//<h3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edit Tips:</h3>
@@ -97,7 +103,7 @@ header('Location: index.php');
 
 					
 				echo '<form method="post" name="edit" action="edit_tips_proc.php">';		
-					echo '<table width="100%">';
+					echo '<table width="85%">';
 						echo '<tr><td width="50%" text-align="right"></td><td width="50%" text-align="left"></td></tr>';
 
 						while ($row = mysql_fetch_array($result,MYSQLI_ASSOC)){
@@ -126,7 +132,7 @@ header('Location: index.php');
 		//echo '<td  text-align="left"><TEXTAREA NAME="Address" ROWS=3 COLS=30 > QUERY DB FOR EXISTING</TEXTAREA></td>';
 			echo '</div>';
 		echo '</div>';
-
+		echo '<div class="clear"></div>';
 	echo '</form>';
 
 

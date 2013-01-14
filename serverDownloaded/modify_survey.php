@@ -54,7 +54,7 @@ if(isset($_POST['submit'])){
 }
 
 
-echo '<div id="wrapper">';
+echo '<div id="wrapper" class="mod_surv">';
 echo '<h3>Filter Groups</h3><br/><br/>';
 echo '<table>';
 echo '<form method="post" action="modify_survey.php">';
