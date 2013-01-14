@@ -28,31 +28,23 @@
 			</head>
 			
 			<body onload="javascript:setOffsets()">
-				<div id="page">
-						<div id="header" style="height:75px;">		
-							<div style="width:60%;position:absolute;top:-25px;">
-							<h1><a href="#">Street to Home 2.0</a></h1>
-							<p class="description" style="font-size: 0.8em;">A Cooperation between Georgia Tech and the United Way of Metropolitan Atlanta</p>
-							</div>
-							<div style="position:absolute;width:40%;top:0px;left:60%"> 
-							<span class="logged_in_user"><B>Currently logged in as: <Font Color="Yellow"><?php echo $_SESSION['LOGIN']; ?></Font> | <a href="logout.php"><Font Color="Yellow">Signout</Font></a></B></span>	
-							</div>
-							<ul class="menu"><li><a href="survey.php">Survey</a></li>
-							<li><a href="report_server_side.php">Reports</a></li>
-							<li></li><li><a href="#">Users</a></li>
-							<li><a href="#">Modify Language</a></li>
-							<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-							<li><a href="admin_options.php">Admin</a></li>
-							<li><a href="#"><i>Help</i></a></li>
-							<li><a href="javascript:toggle_feedback_form()"><i>Feedback?</i></a></li>
-							</ul>	
-									
-						</div>
-
-						<hr />
-						<div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>
 						<?php
+							session_start();
 							include('dbconfig.php');
+							include ('header.php');	
+							
+							//---------security check----------
+								
+								if (!isset($_SESSION['username'])) {
+									session_destroy();
+									header('Location: index.php');
+								}
+
+								if($_SESSION['user_type_num'] != 2){
+									//unauthorized access...destroy all session vars and redirect to login screen.
+									session_destroy();
+									header('Location: index.php');
+								}
 							//populate listbox with used questions in the database
 							//-------------------Start Variables-----------------------
 							$username   =   USERNAME;
@@ -179,7 +171,6 @@
 								</tr>
 							</tbody>
 						</table>
-					</form>					
-				</div>			
+					</form>						
 			</body>
 	</html>

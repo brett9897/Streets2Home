@@ -138,13 +138,7 @@ function display_group_dropdown(){
     return $retval;
 }
 
-function mark_group_used($id){
-    
-    $sql = "UPDATE form_questions
-            SET is_used = 1
-            WHERE grouping_id = $id;";
-    $result = mysql_query($sql) or die('Error1 Msg: '.mysql_error().'<br/>SQL: '.$sql.'<br/>');
-    
+function mark_group_used($id){ 
     $sql = "UPDATE grouping_names
             SET is_used = 1
             WHERE grouping_id = $id;";
@@ -153,16 +147,27 @@ function mark_group_used($id){
     mysql_free_result($result);
 }
 
-function clear_all_groups(){
-    $sql = "UPDATE form_questions
-            SET is_used = 0;";
-    $result = mysql_query($sql) or die('Error3 Msg: '.mysql_error().'<br/>SQL: '.$sql.'<br/>');
-    
+/*mark_all_group_questions_used will turn on EVERY QUESTION in the given grouping id*/
+function mark_all_group_questions_used($id){
+	$sql = "UPDATE form_questions
+            SET is_used = 1
+            WHERE grouping_id = $id;";
+    $result = mysql_query($sql) or die('Error1 Msg: '.mysql_error().'<br/>SQL: '.$sql.'<br/>');
+    mysql_free_result($result);
+}
+
+function clear_all_groups(){  
     $sql = "UPDATE grouping_names
             SET is_used = 0;";
     $result = mysql_query($sql) or die('Error4 Msg: '.mysql_error().'<br/>SQL: '.$sql.'<br/>');
     
     mysql_free_result($result);
+}
+
+function clear_all_question(){
+	$sql = "UPDATE form_questions
+            SET is_used = 0;";
+    $result = mysql_query($sql) or die('Error3 Msg: '.mysql_error().'<br/>SQL: '.$sql.'<br/>');
 }
 
 function group_is_used($id){

@@ -3,15 +3,17 @@ session_start();
 require_once 'dbconfig.php';
 	//header('Content-type: text/html; charset=utf-8');
 	
-	
-	/*
-	 * 
-	 * 
-	 * //NEED TO PUT A LOGED IN SESSION CHECK HERE
-	 * 
-	 * 
-	 * 
-	 * */
+	//---------security check----------
+		if (!isset($_SESSION['username'])) {
+			session_destroy();
+			header('Location: index.php');
+		}
+
+		if($_SESSION['user_type_num'] != 2){
+			//unauthorized access...destroy all session vars and redirect to login screen.
+			session_destroy();
+			header('Location: index.php');
+		}
 	
 	$client_id = $_GET['client_id'];
 	$_SESSION['client_id'] = $client_id;

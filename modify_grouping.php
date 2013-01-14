@@ -101,11 +101,16 @@ $_SESSION['grouping_id'] = $grouping_id;
 
 display_grouping_name($grouping_id);
 
-$query  =   "SELECT * 
+/*
+ $query  =   "SELECT * 
              FROM form_questions 
              WHERE is_used = 1 AND 
              grouping_id = ".$_GET['grouping_id']."  ORDER BY `question_order_num`";
-
+*/
+$query  =   "SELECT * 
+             FROM form_questions 
+             WHERE grouping_id = ".$_GET['grouping_id']."  ORDER BY `question_order_num`";
+             
 $result =   mysql_query($query) or die ('Query1 failed:'. mysql_error());
 
 echo '<form method="post" action="modify_grouping.php">';

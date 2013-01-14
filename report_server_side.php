@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'dbconfig.php';
 	//// Inialize session
 	//session_start();
@@ -31,6 +32,7 @@ require_once 'dbconfig.php';
 		
 
 		<script type="text/javascript" language="javascript" src="jquery.dataTables.js"></script>
+		<script type="text/javascript" language="javascript" src="shCore.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
 				$('#example').dataTable( {
@@ -96,6 +98,12 @@ require_once 'dbconfig.php';
 	include('header.php');
 	include('dbconfig.php');
 	//populate listbox with used questions in the database
+	
+	//-----only allow logged in users to view page-----
+	if (!isset($_SESSION['username'])) {
+		session_destroy();
+		header('Location: index.php');
+	}
 
 	//-------------------Connect To Database-------------------
 	$link   =   mysql_connect(localhost, USERNAME, PASSWORD) or die ('Could not connect :'.  mysql_error());
@@ -129,7 +137,6 @@ require_once 'dbconfig.php';
 								
 								
 								<?php
-									session_start();
 										include('dbconfig.php');
 									
 										
@@ -153,7 +160,11 @@ require_once 'dbconfig.php';
 										while( $row1 = mysql_fetch_array($result1, MYSQLI_ASSOC) ){
 											$chosenFilters[] = $row1{'client_attributes'};
 										}
-										$chosenFilters[] = "details_link";
+										
+										//only allow administrators to view details_link.
+											if($_SESSION['user_type_num'] == 2){
+												$chosenFilters[] = "details_link";
+											}
 										$_SESSION['defaultColumns'] = $chosenFilters;
 									}
 									else if( $_POST['chosenFilters'] != null){		
@@ -169,7 +180,10 @@ require_once 'dbconfig.php';
 
 												$_SESSION['aColumns0'] = $_POST['chosenFilters'];
 												$chosenFilters=$_POST['chosenFilters'];
-												$chosenFilters[] = "details_link";
+												//only allow administrators to view details_link.
+													if($_SESSION['user_type_num'] == 2){
+														$chosenFilters[] = "details_link";
+													}
 												$_SESSION['aColumns0'] = $chosenFilters;
 												/* //working tested long method
 													$recArr2 = $_POST['chosenFilters'];
@@ -213,13 +227,13 @@ require_once 'dbconfig.php';
 												}//end default table updates		
 									} //end check for buiding custom table
 									else if ( $_SESSION['defaultColumns'] != null ){
-										//-----------USER  IS RETURNING TO PAGE WITH A CUSTOM or DEFAULT REPORT ALREADY SELCTED---------
+										//-----------USER IS RETURNING TO PAGE WITH default REPORT ALREADY SELCTED---------
 										
-										$_SESSION['defaultColumns'] = null;
-										$chosenFilters = $_SESSION['aColumns0'];
+										$_SESSION['aColumns0'] = null;
+										$chosenFilters = $_SESSION['defaultColumns'];
 									}
 									else if ( $_SESSION['aColumns0'] != null ){
-										//-----------USER IS RETURNING TO PAGE WITH A CUSTOM or DEFAULT REPORT ALREADY SELCTED---------
+										//-----------USER IS RETURNING TO PAGE WITH A custom REPORT ALREADY SELCTED---------
 										
 										$_SESSION['defaultColumns'] = null;
 										$chosenFilters = $_SESSION['aColumns0'];
