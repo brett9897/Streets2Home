@@ -107,11 +107,15 @@ require_once 'dbconfig.php';
 	$row1 = mysql_fetch_array($result1, MYSQLI_ASSOC);
 	mysql_close($link);
 	
-	echo '<div id="Tips" style="width:30%;position:relative;left:3%;top:3%;background:#B4CFEC;border: 1px solid #000000;padding: 10 10 10 10">
-			<B>Tips</B>
-			<br><br>
-			<p>' . $row1{'tips'} .'</p>
-			</div>';
+	$tips = trim($row1{'tips'});
+	if( $tips != null && $tips != "" )
+	{
+	    echo '<div id="tips">
+	            <strong>Tips</strong>
+	            <br><br>
+	            <p>' . $tips .'</p>
+	          </div>';
+	}
 ?>
 	
 	

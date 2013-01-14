@@ -4,23 +4,17 @@
 			  <title>Homeless Shelter Occupancy</title>
 			  <link href="style.css" rel="stylesheet" type="text/css" />
 			  <link href="screen.css" rel="stylesheet" type="text/css" />
-			  <link href="facebox.css" rel="stylesheet" type="text/css" />
-			  <script src="/javascripts/jquery.js" type="text/javascript"></script>
-			  <!--<script>jQuery.noConflict();</script>-->
-			  <script src="/javascripts/prototype.js" type="text/javascript"></script>
-			  <script src="/javascripts/effects.js" type="text/javascript"></script>
-			  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
-			  <script src="/javascripts/controls.js" type="text/javascript"></script>
-			  <script src="/javascripts/application.js" type="text/javascript"></script>
-			  <script src="/javascripts/feedback.js" type="text/javascript"></script>
-			  <script src="/javascripts/facebox.js" type="text/javascript"></script>
 			  
 			  <!-- <script type="text/javascript" language="javascript" src="jquery-1-3.js"></script> -->
 			  <script type="text/javascript" language="javascript" src="jquery-1-3.js"></script>			  
 			  <!-- <script type="text/javascript" language="javascript" src="dlbScriptCrossBrowser.js"></script> -->
 			  <script type="text/javascript" language="javascript" src="jQuery.dualListBox-1.3.js"></script>
 			  <link href="/jquery.dualListBox-1.3/style.css" rel="stylesheet" type="text/css" />
-			  
+			  <!--jQuery UI stuff-->
+              <link href="css/overcast/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+              <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+              <script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+              <script src="js/button.js" text="text/javascript"></script>
 			  <script language="javascript" type="text/javascript">
 				$(function() {
 					$.configureBoxes();
@@ -75,11 +69,15 @@
 							$result1 = mysql_query($sql1) or die ( 'Query1 failed: ' . mysql_error() );
 							$row1 = mysql_fetch_array($result1, MYSQLI_ASSOC);
 
-							echo '<div id="Tips" style="width:30%;position:relative;left:3%;top:3%;background:#B4CFEC;border: 1px solid #000000;padding: 10 10 10 10">
-									<B>Tips</B>
-									<br><br>
-									<p>' . $row1{'tips'} .'</p>
-									</div>';
+							$tips = trim($row1{'tips'});
+							if( $tips != null && $tips != "" )
+							{
+							    echo '<div id="tips">
+							            <strong>Tips</strong>
+							            <br><br>
+							            <p>' . $tips .'</p>
+							          </div>';
+							}
 									
 									
 						?>
@@ -97,7 +95,7 @@
 									<td valign="top" align="left" style="width:50%">
 											Filter: <input id="box1Filter" type="text"/>
 											<button id="box1Clear" type="button">X</button><br />
-											<select id="box1View" multiple="multiple" style="height:500px;width:100%;">
+											<select id="box1View" multiple="multiple" style="height:500px;width:100%;margin-top:10px;">
 												<?php
 
 													//---------------------Get all the used questions---------------
@@ -165,7 +163,7 @@
 									<td valign="top" align="left" style="width:50%">
 												Filter: <input type="text" id="box2Filter" />
 												<button type="button" id="box2Clear">X</button><br />
-												<select id="box2View" name="chosenFilters[]" multiple="multiple" style="height:500px;width:100%;"></select><br />  <!-- by using name="somthing[]" with [], php serverside will collect this as an array when it posts -->
+												<select id="box2View" name="chosenFilters[]" multiple="multiple" style="height:500px;width:100%;margin-top:10px;"></select><br />  <!-- by using name="somthing[]" with [], php serverside will collect this as an array when it posts -->
 												<span id="box2Counter" class="countLabel"></span>
 												<select id="box2Storage"></select>
 									</td>

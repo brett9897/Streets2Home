@@ -52,3 +52,15 @@ fieldset {
 form#new_person table td {
   padding: 5px 10px;
 }
+
+#tips
+{
+  width:80%;
+  top:3%;
+  background:#B4CFEC;
+  border: 1px solid #000000;
+  padding: 10 10 10 10;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -41,8 +41,12 @@ require_once 'dbconfig.php';
 			  <title>Client Details</title>
 			  <link href="style.css" rel="stylesheet" type="text/css" />
 			  <link href="screen.css" rel="stylesheet" type="text/css" />
-			  
-	  		<link href="client_details.css" rel="stylesheet" type="text/css" />
+			  <!--jQuery UI stuff-->
+              <link href="css/overcast/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+              <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+              <script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+              <script src="js/button.js" text="text/javascript"></script>
+              <script src="js/survey/survey.js" text="text/javascript"></script>
 
 
 			  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -59,11 +63,15 @@ include('header.php');
 	$result1 = mysql_query($sql1) or die ( 'Query1 failed: ' . mysql_error() );
 	$row1 = mysql_fetch_array($result1, MYSQLI_ASSOC);
 
-	echo '<div id="Tips" style="width:30%;position:relative;left:3%;top:3%;background:#B4CFEC;border: 1px solid #000000;padding: 10 10 10 10">
-			<B>Tips</B>
-			<br><br>
-			<p>' . $row1{'tips'} .'</p>
-			</div>';
+	$tips = trim($row1{'tips'});
+    if( $tips != null && $tips != "" )
+    {
+        echo '<div id="tips">
+                <strong>Tips</strong>
+                <br><br>
+                <p>' . $tips .'</p>
+              </div>';
+    }
 	echo '<div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>';
 	
 		//echo '<body>';
