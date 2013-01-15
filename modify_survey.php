@@ -30,23 +30,6 @@ if($_SESSION['user_type_num'] != 2){
     header('Location: index.php');
 }
 
-
-
-//-------------------Get the tip and show it in the this page from database-------------------
-$sql1 = 'SELECT tips FROM tips_table WHERE page_name="modify_survey.php"';
-$result1 = mysql_query($sql1) or die ( 'Query1 failed: ' . mysql_error() );
-$row1 = mysql_fetch_array($result1, MYSQLI_ASSOC);
-
-$tips = trim($row1{'tips'});
-if( $tips != null && $tips != "" )
-{
-    echo '<div id="tips">
-            <strong>Tips</strong>
-            <br><br>
-            <p>' . $tips .'</p>
-          </div>';
-}
-
 echo '<div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>';
 
 if(isset($_POST['submit'])){
@@ -89,6 +72,22 @@ else if( isset($_SESSION['surveyOfflineSet']) ) {
     </div>
 <?php
 echo '<div id="wrapper" class="mod_surv">';
+
+//-------------------Get the tip and show it in the this page from database-------------------
+$sql1 = 'SELECT tips FROM tips_table WHERE page_name="modify_survey.php"';
+$result1 = mysql_query($sql1) or die ( 'Query1 failed: ' . mysql_error() );
+$row1 = mysql_fetch_array($result1, MYSQLI_ASSOC);
+
+$tips = trim($row1{'tips'});
+if( $tips != null && $tips != "" )
+{
+    echo '<div id="tips">
+            <strong>Tips</strong>
+            <br><br>
+            <p>' . $tips .'</p>
+          </div>';
+}
+
 echo '<h3>Filter Groups</h3><br/><br/>';
 echo '<table>';
 echo '<form method="post" action="modify_survey.php">';

@@ -30,12 +30,25 @@ if (!isset($_SESSION['username'])) {
 	$link   =   mysql_connect(HOST,USERNAME,PASSWORD) or die ('Could not connect :'.  mysql_error());
 	mysql_select_db(DB_NAME) or die( "Unable to select database");
 
-    //-------------------Get the tip and show it in the this page from database-------------------
-	$sql1 = 'SELECT tips FROM tips_table WHERE page_name="admin_options.php"';
-	$result1 = mysql_query($sql1) or die ( 'Query1 failed: ' . mysql_error() );
-	$row1 = mysql_fetch_array($result1, MYSQLI_ASSOC);
+  
+	echo '<div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>';
+?>
+        <div id="side_nav">           
+                	<a href="adjust_vi.php">Vulnerability Score Adjustment</a><br/><br/>
+                	<a href="modify_survey.php">Modify Survey</a><br/><br/>
+                	<a href="#">Modify Language</a><br/><br/>
+                	<a href="edit_tips.php">Edit Tips</a><br/><br/>
+        </div>
 
-	$tips = trim($row1{'tips'});
+
+        <div id="content">
+<?php
+         //-------------------Get the tip and show it in the this page from database-------------------
+  $sql1 = 'SELECT tips FROM tips_table WHERE page_name="admin_options.php"';
+  $result1 = mysql_query($sql1) or die ( 'Query1 failed: ' . mysql_error() );
+  $row1 = mysql_fetch_array($result1, MYSQLI_ASSOC);
+
+  $tips = trim($row1{'tips'});
   if( $tips != null && $tips != "" )
   {
     echo '<div id="tips">
@@ -44,20 +57,9 @@ if (!isset($_SESSION['username'])) {
             <p>' . $tips .'</p>
           </div>';
   }
-  
-	echo '<div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>';
 ?>
-                   
-					 <h3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrative Options:</h3>
-					 <br><br>
-                	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="adjust_vi.php">Vulnerability Score Adjustment</a></p><br/>
-                	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="modify_survey.php">Modify Survey</a></p><br/>
-                	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Modify Language</a></p><br/>
-                	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="edit_tips.php">Edit Tips</a></p><br/>
-                	
-                	<br><br><br><br><br><br><br><br><br><br><br>
-                </div>
-                <div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>
+        </div>
+        <div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>
                 
                
                 

@@ -35,8 +35,16 @@ include ('compute_vi.php');
 	echo '<div id="wrapping" class="vi">';
 	//-------------------Connect To Database-------------------
 	$link   =   mysql_connect(HOST,USERNAME,PASSWORD) or die ('Could not connect :'.  mysql_error());
-	mysql_select_db(DB_NAME) or die( "Unable to select database");
-	
+	mysql_select_db(DB_NAME) or die( "Unable to select database");	
+?>
+	<div id="side_nav" class="vi">
+		<a href="adjust_vi.php">Vulnerability Score Adjustment</a><br/><br/>
+    	<a href="modify_survey.php">Modify Survey</a><br/><br/>
+    	<a href="#">Modify Language</a><br/><br/>
+    	<a href="edit_tips.php">Edit Tips</a><br/><br/>
+	</div>
+<?php
+	echo '<div id="content">';
 	//-------------------Get the tip and show it in the this page from database-------------------
 	$sql1 = 'SELECT tips FROM tips_table WHERE page_name="adjust_vi.php"';
 	$result1 = mysql_query($sql1) or die ( 'Query1 failed: ' . mysql_error() );
@@ -50,16 +58,8 @@ include ('compute_vi.php');
 	            <br><br>
 	            <p>' . $tips .'</p>
 	          </div>';
-	}	
-?>
-	<div id="side_nav" class="vi">
-		<a href="adjust_vi.php">Vulnerability Score Adjustment</a><br/><br/>
-    	<a href="modify_survey.php">Modify Survey</a><br/><br/>
-    	<a href="#">Modify Language</a><br/><br/>
-    	<a href="edit_tips.php">Edit Tips</a><br/><br/>
-	</div>
-<?php
-	echo '<div id="content"><form method="post" action="adjust_vi.php">';
+	}
+	echo '<form method="post" action="adjust_vi.php">';
 	echo "<table>";	
 	
 	display_vi_info();

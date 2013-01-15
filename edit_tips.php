@@ -65,8 +65,20 @@ header('Location: index.php');
 		//				<p>Click on the <B>Create</B> button after filling in the details about the Agency.<BR><BR>The fields marked <B><Font Color=Red>*</Font></B> are mandatory.
 		//				</div>';
 				
+		
+		echo '<div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>';
 
-
+		
+?>
+		<div id="side_nav" class="edit_tips">
+	        <a href="adjust_vi.php">Vulnerability Score Adjustment</a><br/><br/>
+	        <a href="modify_survey.php">Modify Survey</a><br/><br/>
+	        <a href="#">Modify Language</a><br/><br/>
+	        <a href="edit_tips.php">Edit Tips</a><br/><br/>
+    	</div>
+<?php
+		
+		echo '<div id="dt_example" class="admin">';
 		// get the tip to show in the this page from database
 		$sql1 = 'SELECT tips FROM tips_table WHERE page_name="edit_tips.php"';
 		$result1 = mysql_query($sql1) or die ( 'Query1 failed: ' . mysql_error() );
@@ -81,20 +93,6 @@ header('Location: index.php');
 		            <p>' . $tips .'</p>
 		          </div>';
 		}
-		
-		echo '<div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>';
-
-		
-?>
-		<div id="side_nav" class="edit_tips">
-	        <a href="adjust_vi.php">Vulnerability Score Adjustment</a><br/><br/>
-	        <a href="modify_survey.php">Modify Survey</a><br/><br/>
-	        <a href="#">Modify Language</a><br/><br/>
-	        <a href="edit_tips.php">Edit Tips</a><br/><br/>
-    	</div>
-<?php
-		
-		echo '<div id="dt_example">';
 		echo '<h3 style="font-size: 18px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edit Tips:</h3>';
 			echo '<div id="container">';
 				

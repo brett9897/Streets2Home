@@ -156,7 +156,7 @@ for ($round=0;$exists == 0;$round++){
                         
                         //---Update the client---
                         $sql1 = 'UPDATE client SET ' . $sqlSetString . ' WHERE client_id =' .$_SESSION['clientID'];
-                        $result1 =   mysql_query($sql1) or die ('Query7 failed:'. mysql_error());
+                        $result1 =   mysql_query($sql1) or die ('Query7 failed:'. $sql1 . ' '. mysql_error());
                                                                     
                         mysql_free_result($result);
                         mysql_free_result($result1);
