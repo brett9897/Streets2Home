@@ -79,7 +79,7 @@ for ($round=0;$exists == 0;$round++){
             //echo'<p>ELSE - $_SESSION['.'"grouping_num"'.'] = ' .$grouping_num. '; </p>';
             
 
-			if( $_SESSION['grouping_num'] == 4 )
+			if( $_SESSION['grouping_num'] == 18 )
             {
             	header('Location: upload_photo.php?msg="Choose a file to upload"');
             }
@@ -174,7 +174,7 @@ for ($round=0;$exists == 0;$round++){
                 }
             }   //--END else for handling all other 'next' questions request that is not for photo upload page
 
-            if( $_SESSION['grouping_num'] == 4 )
+            if( $_SESSION['grouping_num'] == 18 )
             {
             	header('Location: upload_photo.php?msg="Choose a file to upload"');
             }
