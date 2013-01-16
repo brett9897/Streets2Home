@@ -71,9 +71,7 @@ header('Location: index.php');
 		
 ?>
 		<div id="side_nav" class="edit_tips">
-	        <a href="adjust_vi.php">Vulnerability Score Adjustment</a><br/><br/>
 	        <a href="modify_survey.php">Modify Survey</a><br/><br/>
-	        <a href="#">Modify Language</a><br/><br/>
 	        <a href="edit_tips.php">Edit Tips</a><br/><br/>
     	</div>
 <?php

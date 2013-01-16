@@ -34,9 +34,7 @@ if (!isset($_SESSION['username'])) {
 	echo '<div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>';
 ?>
         <div id="side_nav">           
-                	<a href="adjust_vi.php">Vulnerability Score Adjustment</a><br/><br/>
                 	<a href="modify_survey.php">Modify Survey</a><br/><br/>
-                	<a href="#">Modify Language</a><br/><br/>
                 	<a href="edit_tips.php">Edit Tips</a><br/><br/>
         </div>
 
@@ -59,7 +57,7 @@ if (!isset($_SESSION['username'])) {
   }
 ?>
         </div>
-        <div id="BlankLine" style ="max-height:20px;height:20px;min-height:20px;"></div>
+        <div id="BlankLine" class="clear"style ="max-height:20px;height:20px;min-height:20px;"></div>
                 
                
                 

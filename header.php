@@ -12,7 +12,7 @@ echo '<div id="page">
     </div>
     <div>
     <br/>
-    <ul class="menu"><li><a href="survey.php">Survey</a></li>
+    <ul class="menu"><li><a href="consent.php">Survey</a></li>
     <li><a href="survey_offline_static.html">Offline Survey</a></li>
     <li><a href="report_server_side.php">Reports</a></li>
     <li></li><li><a href="users.php">Users</a></li>
@@ -40,7 +40,7 @@ echo '<div id="page">
     </div>
     <div>
     <br/>
-    <ul class="menu"><li><a href="survey.php">Survey</a></li>
+    <ul class="menu"><li><a href="consent.php">Survey</a></li>
     <li><a href="survey_offline_static.html">Offline Survey</a></li>
     <li><a href="report_server_side.php">Reports</a></li>
     <!--<li></li><li><a href="users.php">Users</a></li>-->

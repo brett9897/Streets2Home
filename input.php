@@ -79,7 +79,14 @@ for ($round=0;$exists == 0;$round++){
             //echo'<p>ELSE - $_SESSION['.'"grouping_num"'.'] = ' .$grouping_num. '; </p>';
             
 
-				
+			if( $_SESSION['grouping_num'] == 4 )
+            {
+            	header('Location: upload_photo.php?msg="Choose a file to upload"');
+            }
+            else
+            {
+            	header('Location: survey.php');
+            }
 				
 	}
 	else if(!empty($_POST['next'])){
@@ -123,6 +130,9 @@ for ($round=0;$exists == 0;$round++){
                             if($row{table_name} != NULL){
                                 //$_SESSION['test_val'] =  mysql_real_escape_string($_POST[$input_id_array[$i]]);
                                 
+                                var_dump($_POST);
+                                var_dump($input_id_array);
+                                var_dump($_POST[89]);
                                 foreach($_POST[$input_id_array[$i]] as $key => $val){
                                         $q = "INSERT INTO ".$row{table_name}.
                                               "(client_id, response) VALUES
@@ -163,6 +173,15 @@ for ($round=0;$exists == 0;$round++){
                     }
                 }
             }   //--END else for handling all other 'next' questions request that is not for photo upload page
+
+            if( $_SESSION['grouping_num'] == 4 )
+            {
+            	header('Location: upload_photo.php?msg="Choose a file to upload"');
+            }
+            else
+            {
+            	header('Location: survey.php');
+            }
     }
 	else if(!empty($_POST['reset'])) {
 
@@ -183,12 +202,9 @@ for ($round=0;$exists == 0;$round++){
 		    $_SESSION['grouping_num'] = null;
             $_SESSION['photo'] = "false";
             
-			
+			header("Location: consent.php");
            
 	}
-
-	
-	header('Location: survey.php');
 
 	//mysql_close($link);
 	

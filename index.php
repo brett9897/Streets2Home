@@ -37,12 +37,12 @@
     	<label for="login_username"><b>Username</b></label> <br/>
     	<input type="text" name="username" id="login_username" class="field required" title="Please provide your username" />
     </div>			
-
+    <br/>
     <div>
     	<label for="login_password"><b>Password</b></label> <br/>
     	<input type="password" name="password" id="login_password" class="field required" title="Password is required" />
     </div>			
-    
+    <br/>
     <!--<p class="forgot"><a href="#">Forgot your password?</a></p>-->
     			
     <div class="submit">

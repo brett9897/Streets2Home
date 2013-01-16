@@ -283,9 +283,6 @@ require_once 'dbconfig.php';
 									</form>';
 							echo '</td>';
 							echo '<td align="center">'; 
-								echo '<form method="post" action="report_config.php">
-									<input type="submit" value="Customize Report" align="center">
-									</form>';
 							echo '</td>';
 						echo '</tr>';
 					echo '</table>';

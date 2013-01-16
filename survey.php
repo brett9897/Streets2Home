@@ -190,17 +190,6 @@ echo '</div>';
 
 //mysql_free_result($result); 
 
-function get_start_grouping_num(){
-    $sql = "SELECT grouping_id
-            FROM form_questions
-            WHERE is_used = 1
-            ORDER BY grouping_id";
-    $result = mysql_query($sql) or die("sql: $sql<br/>");
-    $row = mysql_fetch_array($result, MYSQLI_ASSOC);
-    return $row{'grouping_id'};
-    mysql_free_result($result);
-}
-
 function get_last_grouping_num(){
     $sql = "SELECT grouping_id
             FROM form_questions

@@ -65,9 +65,7 @@ else if( isset($_SESSION['surveyOfflineSet']) ) {
 ?>
 <div id="wrapping" class="mod_surv">
     <div id="side_nav" class="mod_surv">
-        <a href="adjust_vi.php">Vulnerability Score Adjustment</a><br/><br/>
         <a href="modify_survey.php">Modify Survey</a><br/><br/>
-        <a href="#">Modify Language</a><br/><br/>
         <a href="edit_tips.php">Edit Tips</a><br/><br/>
     </div>
 <?php

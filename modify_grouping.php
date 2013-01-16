@@ -49,7 +49,7 @@ if(isset($_POST['submit'])){
                 break;
 
             case "type":
-                $update_str .= "question_response_type = $val, ";
+                //$update_str .= "question_response_type = $val, ";
                 break;
 
             case "used":
@@ -118,7 +118,7 @@ echo '<table>';
 echo '<tr>';
 echo '<th>Order Number</th>';
 echo '<th>Question Text</th>';
-echo '<th>Response Type</th>';
+//echo '<th>Response Type</th>';
 echo '<th>Currently Used</th>';
 echo '</tr>';
 
@@ -134,7 +134,7 @@ while($row = mysql_fetch_array($result, MYSQLI_ASSOC)){
     echo '<td style="vertical-align:top"><textarea cols="40" rows="5" wrap="hard"
             name="'.$row{'question_id'}.'_text" 
             id="'.$row{'question_id'}.'_text">'.$row{'question_text'}.'</textarea></td>';
-    echo '<td valign="top">'.display_question_response_type_dropdown($row{'question_id'}, $row{'question_response_type'}).'</td>';
+    //echo '<td valign="top">'.display_question_response_type_dropdown($row{'question_id'}, $row{'question_response_type'}).'</td>';
     echo '<td valign="top">'.display_currently_used_dropbox($row{'question_id'}, $row{'is_used'}).'</td>';
     echo '</tr>';
     
