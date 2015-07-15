@@ -3,7 +3,7 @@ Streets2Home
 Version 2.0
 ------------
 
-This was an attempt to clean up a project that came from another group.  It just was not salvageable.  The rewrite of this is at [a s2h_cake](https://github.com/brett9897/s2h_cake)
+This was an attempt to clean up a project that came from another group.  It just was not salvageable.  The rewrite of this is at [s2h_cake](https://github.com/brett9897/s2h_cake)
 
 Steps to get this running on your local machine
 
